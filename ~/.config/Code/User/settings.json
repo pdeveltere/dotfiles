@@ -1,0 +1,40 @@
+{
+    // Enable/disable navigation breadcrumbs
+    "breadcrumbs.enabled": true,
+
+    // The number of spaces a tab is equal to
+    "editor.tabSize": 2,
+
+    // Controls auto save of dirty files
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000,
+
+    // Configure glob patterns for excluding files and folders
+    "files.exclude": {
+        "**/node_modules": true,
+        "**/dist": true,
+        "**/.gradle": true,
+        "**/tmp": true,
+        "**/.github": true,
+        ".vscode": true,
+        "**/build": true,
+        // "**/target": true,
+    },
+
+    // When enabled, insert a final new line at the end of the file when saving it
+    "files.insertFinalNewline": true,
+
+    // When enabled, will trim trailing whitespace when saving a file
+    "files.trimTrailingWhitespace": true,
+
+    // Turns auto fix on save on or off
+    "tslint.autoFixOnSave": true,
+
+    // Rustup configuration
+    "rust.rustup": {
+        "toolchain": "nightly-2018-05-14-x86_64-apple-darwin",
+        "nightlyToolchain": "nightly-2018-05-14-x86_64-apple-darwin"
+    },
+    "rust.mode": "legacy",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+}
