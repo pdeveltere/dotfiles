@@ -1,21 +1,16 @@
 # \[._.]/  Dotfiles!
 
-```
-./dotfiles.sh
-```
+## Introduction
+
+http://dotfiles.github.io/
+
 
 ## iOS
 
-### Stuff
 - Install ["Homebrew"](https://brew.sh/)
 - Install ["Oh My Zsh!"](https://ohmyz.sh/)
+- Install ["Node"](https://nodejs.org/)
 
-### Security
-- Enable Firewall (+ stealth mode)
-- Disable guest account login
-- Disable remote apple events
-- Disable wake-on modem
-- Disable wake-on LAN
+## Ubuntu
 
-### Trackpad, mouse, keyboard and input
-- Set fast keyboard repeat rate
+- Install ["Oh My Zsh!"](https://ohmyz.sh/)
