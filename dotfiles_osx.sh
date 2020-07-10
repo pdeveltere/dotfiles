@@ -47,9 +47,14 @@ bot "installing 'Oh My Zsh!'"
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 if [[ ! -d ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ]]; then
-    git clone -q https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    git clone -q https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 fi
-cp themes/velter.zsh-theme ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/velter.zsh-theme
+
+# copy the theme
+cp themes/velter.zsh-theme ~/.oh-my-zsh/custom/themes/velter.zsh-theme
+
+# enable the theme
+sed -i 's/_THEME=\"robbyrussel\"/_THEME=\"velter\"/g' ~/.zshrc > /dev/null 2>&1
 
 ##############################################################################
 bot "creating symlinks for project dotfiles..."
