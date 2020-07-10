@@ -1,9 +1,8 @@
-# \[._.]/  Dotfiles!
+# Dotfiles ❤ ~/
 
 ## Introduction
 
 http://dotfiles.github.io/
-
 
 ## iOS
 

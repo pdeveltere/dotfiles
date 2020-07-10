@@ -7,7 +7,7 @@ COL_GREEN="$(tput setaf 2)"
 RESET="$(tput sgr0)"
 
 function bot() {
-    echo -e "\n$BOLD\[._.]/ - $1$RESET"
+    echo -e "\n$BOLD❤ ~/ - $1$RESET"
 }
 
 function action() {
