@@ -1,0 +1,11 @@
+[user]
+        name = Pieter
+        email = pieterdeveltere@gmail.com
+[alias]
+        b = branch
+        co = checkout
+        c = commit
+        s = status
+        p = push
+[push]
+	default = current
