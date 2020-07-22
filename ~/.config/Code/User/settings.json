@@ -27,9 +27,6 @@
   "terminal.integrated.shell.windows": "c:/Program Files/PowerShell/7/pwsh.exe",
   "terminal.integrated.shellArgs.windows": "-nologo",
 
-  // Turns auto fix on save on or off
-  "tslint.autoFixOnSave": true,
-
   // Workbench Settings
   "workbench.editor.enablePreview": false,
   "workbench.startupEditor": "none"
