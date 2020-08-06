@@ -2,7 +2,7 @@
 # Generic configuration that applies to all shells
 #############################################################
 
-source $HOME/.bash_secrets
+# add anything here
 
 #############################################################
 # Aliases

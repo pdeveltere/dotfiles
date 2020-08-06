@@ -9,3 +9,5 @@
         p = push
 [push]
 	default = current
+[core]
+	editor = vim
