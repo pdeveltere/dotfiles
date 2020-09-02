@@ -24,12 +24,13 @@ if [[ ! -d ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ]]; then
     git clone -q https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 fi
 cp themes/velter.zsh-theme ~/.oh-my-zsh/custom/themes/velter.zsh-theme
+sed -i 's/plugins=(.*)/plugins=(git autojump zsh-autosuggestions)/' ~/.zshrc
 
 ##############################################################################
 bot "creating symlinks for project dotfiles ..."
 ##############################################################################
 
-find ./\~ -type f -print0 | while IFS= read -r -d $'\0' file; 
+find ./\~ -type f -print0 | while IFS= read -r -d $'\0' file;
 do
     if [[ $file == "." || $file == ".." || $file == ".DS_Store" ]]
     then
@@ -50,4 +51,4 @@ done
 bot "installing 'nvm' ..."
 ##############################################################################
 
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | zsh
+curl -o- -s https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | zsh > /dev/null 2>&1
