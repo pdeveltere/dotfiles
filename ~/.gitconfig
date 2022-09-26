@@ -6,10 +6,11 @@
         co = checkout
         c = commit
         s = status
-        p = push
+        p = push --no-verify
         ca = commit --amend
         can = commit --amend --no-edit
 [push]
 	default = current
+	autoSetupRemote = true
 [core]
 	editor = vim
