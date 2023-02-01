@@ -4,7 +4,7 @@
 [alias]
         b = branch
         co = checkout
-        c = commit
+        c = commit -m
         s = status
         p = push --no-verify
         ca = commit --amend
