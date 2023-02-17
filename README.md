@@ -15,6 +15,6 @@ http://dotfiles.github.io/
 
 ## iOS
 
+- Create symlinks for ~
 - Install ["Homebrew"](https://brew.sh/)
 - Install ["Oh My Zsh!"](https://ohmyz.sh/)
-- Install ["Node"](https://nodejs.org/)

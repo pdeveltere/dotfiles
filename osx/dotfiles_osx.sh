@@ -3,75 +3,71 @@
 SCRIPTPATH=$( cd "$(dirname "$0")" ; pwd -P )
 BOLD=$(tput bold)
 COL_YELLOW="$(tput setaf 3)"
-COL_GREEN="$(tput setaf 2)"
 RESET="$(tput sgr0)"
 
 function bot() {
     echo -e "\n$BOLD❤ ~/ - $1$RESET"
 }
 
-function action() {
-    echo -en " ⇒ $1..."
-}
-
-function running() {
-echo -en "$COL_YELLOW ⇒ $RESET"$1": "
-}
-
-function ok() {
-echo -e "$COL_GREEN[ok]$RESET "$1
-}
-
 ##############################################################################
 bot "installing 'homebrew'..."
 ##############################################################################
-
 brew_bin=$(which brew) 2>&1 > /dev/null
 if [[ $? != 0 ]]; then
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    if [[ $? != 0 ]]; then
-        error "unable to install homebrew, script $0 abort!"
-        exit 2
-    fi
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 else
     echo -e "${COL_YELLOW}You already have homebrew installed.${RESET}"
 fi
 
-action "brew install git";ok
-action "brew install ruby";ok
-action "brew install node";ok
-
 ##############################################################################
-bot "installing 'Oh My Zsh!'"
+bot "configuring 'Oh My Zsh!'"
 ##############################################################################
-
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-if [[ ! -d ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ]]; then
-    git clone -q https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+if [ -z "$ZSH" ]; then
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+else
+    echo -e "${COL_YELLOW}You already have oh-my-zsh installed.${RESET}"
 fi
 
-# copy the theme
-cp themes/velter.zsh-theme ~/.oh-my-zsh/custom/themes/velter.zsh-theme
+# enable autosuggestion and autojump
+if [[ ! -d ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ]]; then
+    echo " ⇒ installing autosuggestions..."
+    git clone -q https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+    sed -i '' 's/plugins=(.*)/plugins=(git zsh-autosuggestions)/' ~/.zshrc
+fi
 
-# enable the theme
-sed -i 's/_THEME=\"robbyrussel\"/_THEME=\"velter\"/g' ~/.zshrc > /dev/null 2>&1
+# enable my theme
+cp $SCRIPTPATH/themes/velter.zsh-theme ~/.oh-my-zsh/custom/themes/velter.zsh-theme
+sed -i '' 's/THEME=\".*\"/THEME=\"velter\"/g' ~/.zshrc > /dev/null 2>&1
 
 ##############################################################################
-bot "creating symlinks for project dotfiles..."
+bot "creating symlinks..."
 ##############################################################################
+shopt -s dotglob
 
-pushd $SCRIPTPATH/\~ > /dev/null 2>&1
-for file in .*; do
-    if [[ $file == "." || $file == ".." || $file == ".DS_Store" || -d $file ]]; then
-        continue
-    fi
-    echo " ⇒ ~/$file"
+for file in $SCRIPTPATH/../~/*;
+do
+    filename=$(basename $file)
+    link="$HOME/$filename"
+
+    echo " ⇒ link $file to $link"
+
     # symlink might still exist
-    unlink ~/$file > /dev/null 2>&1
-    # create the link
-    ln -sf $SCRIPTPATH/\~/$file ~
-done
-popd > /dev/null 2>&1
+    unlink $link > /dev/null 2>&1
 
-echo " ⇒ ~/Library/Application\ Support/Code/User/settings.json"
-ln $SCRIPTPATH/\~/.config/Code/User/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
+    # create the link
+    ln -sf $file $link
+done
+
+for file in $SCRIPTPATH/~/*;
+do
+    filename=$(basename $file)
+    link="$HOME/$filename"
+
+    echo " ⇒ link $file to $link"
+
+    # symlink might still exist
+    unlink $link > /dev/null 2>&1
+
+    # create the link
+    ln -sf $file $link
+done
